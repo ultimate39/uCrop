@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.yalantis.ucrop.sample"
+        applicationId "by.idiscount.ucrop.sample"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 7

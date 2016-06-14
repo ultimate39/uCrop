@@ -1,5 +1,40 @@
 apply plugin: 'com.android.library'
-apply from: '../mavenpush.gradle'
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
+}
+
+allprojects {
+    version = VERSION_NAME
+    group = GROUP
+
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+
 
 android {
     compileSdkVersion 23
@@ -8,8 +43,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 16
-        versionName "1.5.0"
+        versionCode 0
+        versionName "1.5.1"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -31,6 +66,54 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'uCrop'
+            description 'Android Library for cropping images for iDiscount'
+            url 'https://github.com/ultimate39/uCrop'
+            inceptionYear '2015'
+
+            packaging 'aar'
+            groupId 'by.idiscount'
+            artifactId 'ucrop'
+            version '1.5.1'
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection 'https://github.com/ultimate39/uCrop/git'
+                url 'https://github.com/ultimate39/uCrop'
+
+            }
+        }
+    }
+}
+
+
+
+bintray {
+    user = "ultimate39"
+    key = "afd25934acbf8d6ac2fdcbe2f45c755e53b79bb9"
+    pkg {
+        configurations = ['archives']
+        repo = 'maven'
+        name = 'uCrop'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/ultimate39/uCrop.git'
+        version {
+            name = '1.5.1'
+            desc = 'Android Library for cropping images for iDiscount'
+            vcsTag = '1.5.1'
+        }
+    }
 }

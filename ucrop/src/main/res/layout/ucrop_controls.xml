@@ -7,6 +7,7 @@
         android:id="@+id/wrapper_controls"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ucrop_height_wrapper_controls"
+        android:layout_alignParentBottom="true"
         android:layout_above="@+id/wrapper_states"
         android:background="@color/ucrop_color_widget_background">
 
@@ -32,6 +33,7 @@
 
     <LinearLayout
         android:id="@+id/wrapper_states"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ucrop_height_wrapper_states"
         android:layout_alignParentBottom="true"

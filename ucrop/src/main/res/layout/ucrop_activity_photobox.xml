@@ -10,19 +10,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:title="31239-21083091"
         android:background="@color/ucrop_color_toolbar"
-        android:minHeight="?attr/actionBarSize">
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/ucrop_label_edit_photo"
-            android:textColor="@color/ucrop_color_toolbar_widget"/>
-
-    </android.support.v7.widget.Toolbar>
+        android:minHeight="?attr/actionBarSize"/>
 
     <FrameLayout
         android:id="@+id/ucrop_frame"
@@ -41,7 +31,7 @@
             tools:background="@drawable/ucrop_vector_ic_crop"
             tools:ignore="MissingPrefix"/>
 
-        <com.yalantis.ucrop.view.UCropView
+        <by.idiscount.ucrop.view.UCropView
             android:id="@+id/ucrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
