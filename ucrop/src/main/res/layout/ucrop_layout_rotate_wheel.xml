@@ -4,7 +4,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
-                tools:showIn="@layout/ucrop_activity_photobox"
                 tools:visibility="visible">
 
     <TextView
@@ -16,7 +15,6 @@
         android:id="@+id/rotate_scroll_wheel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/text_view_rotate"
         android:layout_toEndOf="@+id/wrapper_reset_rotate"
         android:layout_toLeftOf="@+id/wrapper_rotate_by_angle"
         android:layout_toRightOf="@+id/wrapper_reset_rotate"

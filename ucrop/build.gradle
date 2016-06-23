@@ -20,9 +20,11 @@ def isReleaseBuild() {
     return version.contains("SNAPSHOT") == false
 }
 
+def VERSION_NAME = "1.5.3"
+
 allprojects {
     version = VERSION_NAME
-    group = GROUP
+    group = "by.idiscount"
 
     repositories {
         jcenter()
@@ -33,9 +35,6 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-
-
-
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.3'
@@ -43,8 +42,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 0
-        versionName "1.5.1"
+        versionCode 1
+        versionName VERSION_NAME
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -58,6 +57,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
 	lintOptions {
         abortOnError false
     }
@@ -68,6 +68,26 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
+}
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+}
+
+task androidJavadocsJar(type: Jar) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
 }
 
 install {
@@ -81,7 +101,7 @@ install {
             packaging 'aar'
             groupId 'by.idiscount'
             artifactId 'ucrop'
-            version '1.5.1'
+            version VERSION_NAME
 
             licenses {
                 license {
@@ -91,7 +111,7 @@ install {
                 }
             }
             scm {
-                connection 'https://github.com/ultimate39/uCrop/git'
+                connection 'https://github.com/ultimate39/uCrop.git'
                 url 'https://github.com/ultimate39/uCrop'
 
             }
@@ -111,9 +131,9 @@ bintray {
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/ultimate39/uCrop.git'
         version {
-            name = '1.5.1'
+            name = VERSION_NAME
             desc = 'Android Library for cropping images for iDiscount'
-            vcsTag = '1.5.1'
+            vcsTag = VERSION_NAME
         }
     }
 }

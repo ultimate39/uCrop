@@ -23,6 +23,7 @@ public class GestureCropImageView extends CropImageView {
 
     private boolean mIsRotateEnabled = true, mIsScaleEnabled = true;
     private int mDoubleTapScaleSteps = 5;
+    private float mScaleFactor = 1f;
 
     public GestureCropImageView(Context context) {
         super(context);
@@ -118,7 +119,9 @@ public class GestureCropImageView extends CropImageView {
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            postScale(detector.getScaleFactor(), mMidPntX, mMidPntY);
+            mScaleFactor = detector.getScaleFactor();
+            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 10.0f));
+            postScale(mScaleFactor, mMidPntX, mMidPntY);
             return true;
         }
     }

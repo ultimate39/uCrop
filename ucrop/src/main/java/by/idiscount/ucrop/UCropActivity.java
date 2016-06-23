@@ -66,8 +66,8 @@ public class UCropActivity extends AppCompatActivity {
     private static final String TAG = "UCropActivity";
 
     private static final int TABS_COUNT = 3;
-    private static final int SCALE_WIDGET_SENSITIVITY_COEFFICIENT = 15000;
-    private static final int ROTATE_WIDGET_SENSITIVITY_COEFFICIENT = 42;
+    private static final int SCALE_WIDGET_SENSITIVITY_COEFFICIENT = 500000;
+    private static final int ROTATE_WIDGET_SENSITIVITY_COEFFICIENT = 10;
 
     private String mToolbarTitle;
 
@@ -517,7 +517,7 @@ public class UCropActivity extends AppCompatActivity {
 
     private void setInitialState() {
         setWidgetState(R.id.state_rotate);
-        setAllowedGestures(0);
+        setAllowedGestures(ALL);
         /* if (mShowBottomControls) {
             if (mWrapperStateAspectRatio.getVisibility() == View.VISIBLE) {
                 setWidgetState(R.id.state_aspect_ratio);
@@ -550,8 +550,8 @@ public class UCropActivity extends AppCompatActivity {
     }
 
     private void setAllowedGestures(int tab) {
-        mGestureCropImageView.setScaleEnabled(mAllowedGestures[tab] == ALL || mAllowedGestures[tab] == SCALE);
-        //mGestureCropImageView.setRotateEnabled(mAllowedGestures[tab] == ALL || mAllowedGestures[tab] == ROTATE);
+        mGestureCropImageView.setScaleEnabled(true);
+        mGestureCropImageView.setRotateEnabled(false);
     }
 
     /**
